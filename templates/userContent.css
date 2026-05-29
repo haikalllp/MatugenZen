@@ -1,4 +1,4 @@
-/* Caelestia Theme - userContent.css */
+/* Matugen Theme - userContent.css */
 /* About pages styling (about:newtab, about:home, about:preferences, etc.) */
 
 @media (prefers-color-scheme: dark) {
@@ -6,12 +6,12 @@
   /* Common variables affecting all pages */
   @-moz-document url-prefix("about:") {
     :root {
-      --in-content-page-color: #{{ onSurface.hex }} !important;
-      --color-accent-primary: #{{ primary.hex }} !important;
-      --color-accent-primary-hover: #{{ primary.hex }}99 !important;
-      --color-accent-primary-active: #{{ primary.hex }}cc !important;
-      background-color: #{{ surfaceContainer.hex }} !important;
-      --in-content-page-background: #{{ surfaceContainer.hex }} !important;
+      --in-content-page-color: {{ colors.on_surface.default.hex }} !important;
+      --color-accent-primary: {{ colors.primary.default.hex }} !important;
+      --color-accent-primary-hover: {{ colors.primary.default.hex }}99 !important;
+      --color-accent-primary-active: {{ colors.primary.default.hex }}cc !important;
+      background-color: {{ colors.surface_container.default.hex }} !important;
+      --in-content-page-background: {{ colors.surface_container.default.hex }} !important;
     }
 
   }
@@ -20,20 +20,19 @@
   @-moz-document url("about:newtab"), url("about:home") {
 
     :root {
-      --newtab-background-color: #{{ surfaceContainer.hex }} !important;
-      --newtab-background-color-secondary: #{{ surfaceContainerHigh.hex }} !important;
-      --newtab-element-hover-color: #{{ surfaceContainerHigh.hex }} !important;
-      --newtab-text-primary-color: #{{ onSurface.hex }} !important;
-      --newtab-wordmark-color: #{{ onSurface.hex }} !important;
-      --newtab-primary-action-background: #{{ primary.hex }} !important;
+      --newtab-background-color: {{ colors.surface_container.default.hex }} !important;
+      --newtab-background-color-secondary: {{ colors.surface_container_high.default.hex }} !important;
+      --newtab-element-hover-color: {{ colors.surface_container_high.default.hex }} !important;
+      --newtab-text-primary-color: {{ colors.on_surface.default.hex }} !important;
+      --newtab-wordmark-color: {{ colors.on_surface.default.hex }} !important;
+      --newtab-primary-action-background: {{ colors.primary.default.hex }} !important;
     }
 
     .icon {
-      color: #{{ primary.hex }} !important;
+      color: {{ colors.primary.default.hex }} !important;
     }
 
     .search-wrapper .logo-and-wordmark .logo {
-      /* Replace zen-logo.svg with caelestia's logo in the same directory */
       background: url("zen-logo.svg") no-repeat center !important;
       display: inline-block !important;
       height: 82px !important;
@@ -50,42 +49,42 @@
     }
 
     .card-outer:is(:hover, :focus, .active):not(.placeholder) .card-title {
-      color: #{{ primary.hex }} !important;
+      color: {{ colors.primary.default.hex }} !important;
     }
 
     .top-site-outer .search-topsite {
-      background-color: #{{ primary.hex }} !important;
+      background-color: {{ colors.primary.default.hex }} !important;
     }
 
     .compact-cards .card-outer .card-context .card-context-icon.icon-download {
-      fill: #{{ primary.hex }} !important;
+      fill: {{ colors.primary.default.hex }} !important;
     }
   }
 
   /* Variables and styles specific to about:preferences */
   @-moz-document url-prefix("about:preferences") {
     :root {
-      --zen-colors-tertiary: #{{ surface.hex }} !important;
-      --in-content-text-color: #{{ onSurface.hex }} !important;
-      --link-color: #{{ primary.hex }} !important;
-      --link-color-hover: #{{ primary.hex }}99 !important;
-      --zen-colors-primary: #{{ surfaceContainerHigh.hex }} !important;
-      --in-content-box-background: #{{ surfaceContainerHigh.hex }} !important;
-      --zen-primary-color: #{{ primary.hex }} !important;
+      --zen-colors-tertiary: {{ colors.surface.default.hex }} !important;
+      --in-content-text-color: {{ colors.on_surface.default.hex }} !important;
+      --link-color: {{ colors.primary.default.hex }} !important;
+      --link-color-hover: {{ colors.primary.default.hex }}99 !important;
+      --zen-colors-primary: {{ colors.surface_container_high.default.hex }} !important;
+      --in-content-box-background: {{ colors.surface_container_high.default.hex }} !important;
+      --zen-primary-color: {{ colors.primary.default.hex }} !important;
     }
 
     groupbox, moz-card {
-      background: #{{ surfaceContainer.hex }} !important;
+      background: {{ colors.surface_container.default.hex }} !important;
     }
 
     button,
     groupbox menulist {
-      background: #{{ surfaceContainerHigh.hex }} !important;
-      color: #{{ onSurface.hex }} !important;
+      background: {{ colors.surface_container_high.default.hex }} !important;
+      color: {{ colors.on_surface.default.hex }} !important;
     }
 
     .main-content {
-      background-color: #{{ surface.hex }} !important;
+      background-color: {{ colors.surface.default.hex }} !important;
     }
 
     .identity-color-blue {
@@ -132,29 +131,29 @@
   /* Variables and styles specific to about:addons */
   @-moz-document url-prefix("about:addons") {
     :root {
-      --zen-dark-color-mix-base: #{{ surface.hex }} !important;
-      --background-color-box: #{{ surfaceContainer.hex }} !important;
+      --zen-dark-color-mix-base: {{ colors.surface.default.hex }} !important;
+      --background-color-box: {{ colors.surface_container.default.hex }} !important;
     }
   }
 
   /* Variables and styles specific to about:protections */
   @-moz-document url-prefix("about:protections") {
     :root {
-      --zen-primary-color: #{{ surfaceContainer.hex }} !important;
-      --social-color: #{{ tertiary.hex }} !important;
-      --coockie-color: #{{ secondary.hex }} !important;
-      --fingerprinter-color: #{{ secondary.hex }} !important;
-      --cryptominer-color: #{{ primary.hex }} !important;
-      --tracker-color: #{{ primary.hex }} !important;
-      --in-content-primary-button-background-hover: #{{ surfaceContainerHigh.hex }} !important;
-      --in-content-primary-button-text-color-hover: #{{ onSurface.hex }} !important;
-      --in-content-primary-button-background: #{{ surfaceContainerHigh.hex }} !important;
-      --in-content-primary-button-text-color: #{{ onSurface.hex }} !important;
+      --zen-primary-color: {{ colors.surface_container.default.hex }} !important;
+      --social-color: {{ colors.tertiary.default.hex }} !important;
+      --coockie-color: {{ colors.secondary.default.hex }} !important;
+      --fingerprinter-color: {{ colors.secondary.default.hex }} !important;
+      --cryptominer-color: {{ colors.primary.default.hex }} !important;
+      --tracker-color: {{ colors.primary.default.hex }} !important;
+      --in-content-primary-button-background-hover: {{ colors.surface_container_high.default.hex }} !important;
+      --in-content-primary-button-text-color-hover: {{ colors.on_surface.default.hex }} !important;
+      --in-content-primary-button-background: {{ colors.surface_container_high.default.hex }} !important;
+      --in-content-primary-button-text-color: {{ colors.on_surface.default.hex }} !important;
     }
 
 
     .card {
-      background-color: #{{ surfaceContainerHigh.hex }} !important;
+      background-color: {{ colors.surface_container_high.default.hex }} !important;
     }
   }
 }

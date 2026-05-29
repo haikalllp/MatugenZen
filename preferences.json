@@ -1,12 +1,12 @@
 [
   {
     "type": "separator",
-    "label": "CaelestiaZen Settings"
+    "label": "MatugenZen Settings"
   },
   {
     "type": "string",
-    "property": "caelestia.zen-sync.chrome-path",
-    "defaultValue": "~/.local/state/caelestia/theme/zen-browser.css",
+    "property": "matugen.zen-sync.chrome-path",
+    "defaultValue": "~/.cache/matugen/zen-browser.css",
     "label": "Theme File Path",
     "description": "Path to the zen-browser.css theme file"
   },
@@ -17,7 +17,7 @@
   {
     "type": "string",
     "value": "num",
-    "property": "caelestia.zen-sync.saturation",
+    "property": "matugen.zen-sync.saturation",
     "defaultValue": "150",
     "label": "Color Intensity",
     "description": "0-200 (default: 200 = 2.00)"
@@ -25,7 +25,7 @@
   {
     "type": "string",
     "value": "num",
-    "property": "caelestia.zen-sync.brightness",
+    "property": "matugen.zen-sync.brightness",
     "defaultValue": "15",
     "label": "Color Brightness",
     "description": "0-100 (default: 5 = 0.05)"
@@ -33,7 +33,7 @@
   {
     "type": "string",
     "value": "num",
-    "property": "caelestia.zen-sync.contrast",
+    "property": "matugen.zen-sync.contrast",
     "defaultValue": "30",
     "label": "Color Strength",
     "description": "0-100 (default: 50 = 0.50, lower = stronger)"

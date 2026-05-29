@@ -1,10 +1,10 @@
-# CaelestiaZen
+# MatugenZen
 
-A Sine mod for Zen Browser that syncs Caelestia's surface color to Zen Boosts, automatically theming all websites.
+A Sine mod for Zen Browser that syncs Matugen's surface color to Zen Boosts, automatically theming all websites.
 
 ## Features
 
-- Real-time sync with Caelestia's generated theme files
+- Real-time sync with Matugen's generated theme files
 - Automatically applies surface color to all websites via Zen Boosts
 - Applies theme to browser chrome (background, sidebar, etc.)
 - Configurable chrome theme path
@@ -26,6 +26,7 @@ This will automatically:
 - Detect your Zen profile
 - Copy or symlink the mod files
 - Update `mods.json`
+- Install the matugen template to `~/.config/matugen/templates/`
 
 Then restart Zen Browser.
 
@@ -33,12 +34,12 @@ Then restart Zen Browser.
 
 1. Create the mod directory:
 ```bash
-mkdir -p ~/.config/zen/<profile>/chrome/sine-mods/caelestia-zen
+mkdir -p ~/.config/zen/<profile>/chrome/sine-mods/matugen-zen
 ```
 
 2. Copy the mod files:
 ```bash
-cp *.json *.uc.js *.css ~/.config/zen/<profile>/chrome/sine-mods/caelestia-zen/
+cp *.json *.uc.js *.css ~/.config/zen/<profile>/chrome/sine-mods/matugen-zen/
 ```
 
 3. Add to `mods.json` in `~/.config/zen/<profile>/chrome/sine-mods/`:
@@ -48,10 +49,10 @@ python3 -c "
 import json
 with open('mods.json', 'r') as f:
     mods = json.load(f)
-with open('caelestia-zen/theme.json', 'r') as f:
+with open('matugen-zen/theme.json', 'r') as f:
     new_mod = json.load(f)
-mods['caelestia-zen'] = new_mod
-mods['caelestia-zen']['origin'] = 'store'
+mods['matugen-zen'] = new_mod
+mods['matugen-zen']['origin'] = 'store'
 with open('mods.json', 'w') as f:
     json.dump(mods, f, indent=2)
 "
@@ -60,7 +61,7 @@ with open('mods.json', 'w') as f:
 ## Configuration
 
 Edit preferences in Sine settings:
-- **Theme File Path**: Path to the zen-browser.css theme file (default: `~/.local/state/caelestia/theme/zen-browser.css`)
+- **Theme File Path**: Path to the zen-browser.css theme file (default: `~/.cache/matugen/zen-browser.css`)
 - **Color Intensity**: 0-200 (default: 150)
 - **Color Brightness**: 0-100 (default: 15)
 - **Color Strength**: 0-100, lower = stronger (default: 30)
@@ -71,19 +72,20 @@ The mod watches for changes in the chrome theme file and automatically applies t
 
 ## Template Setup
 
-Copy the template to your Caelestia config:
+The install script will automatically copy the template to your matugen config. To do it manually:
+
 ```bash
-mkdir -p ~/.config/caelestia/templates
-cp templates/zen-browser.css ~/.config/caelestia/templates/
+mkdir -p ~/.config/matugen/templates
+cp templates/zen-browser.css ~/.config/matugen/templates/
 ```
 
-The template uses Mustache-style placeholders (`{{ variableName.hex }}`) that Caelestia replaces with actual colors.
+The template uses matugen's dot-notation syntax (`{{ colors.surface.default.hex }}`) that Matugen replaces with actual Material You colors.
 
 ## Requirements
 
-- [Caelestia](https://github.com/caelestia-dots) dotfiles with theme generation configured
+- [Matugen](https://github.com/InioX/matugen) with theme generation configured
 - Zen Browser with Sine mod system installed
-- A `zen-browser.css` template in `~/.config/caelestia/templates/`
+- A `zen-browser.css` template in `~/.config/matugen/templates/`
 
 ## License
 

@@ -1,14 +1,14 @@
-/* Caelestia Theme for Zen Browser */
-/* Generated from ~/.config/caelestia/templates/zen-browser.css */
+/* Matugen Theme for Zen Browser */
+/* Generated from ~/.config/matugen/templates/zen-browser.css */
 
 /* Named variables for JS extraction */
 :root {
-  --caelestia-surface: #{{ surface.hex }};
-  --caelestia-surfaceContainer: #{{ surfaceContainer.hex }};
-  --caelestia-surfaceContainerHigh: #{{ surfaceContainerHigh.hex }};
-  --caelestia-onSurface: #{{ onSurface.hex }};
-  --caelestia-primary: #{{ primary.hex }};
-  --caelestia-outline: #{{ outline.hex }};
+  --matugen-surface: {{ colors.surface.default.hex }};
+  --matugen-surfaceContainer: {{ colors.surface_container.default.hex }};
+  --matugen-surfaceContainerHigh: {{ colors.surface_container_high.default.hex }};
+  --matugen-onSurface: {{ colors.on_surface.default.hex }};
+  --matugen-primary: {{ colors.primary.default.hex }};
+  --matugen-outline: {{ colors.outline.default.hex }};
   color-scheme: {{ mode }};
 }
 
@@ -17,126 +17,126 @@ html,
 :root,
 #main-window,
 [x-test] {
-  --zen-main-browser-background: #{{ surfaceContainer.hex }} !important;
-  --zen-main-browser-background-old: #{{ surfaceContainer.hex }} !important;
+  --zen-main-browser-background: {{ colors.surface_container.default.hex }} !important;
+  --zen-main-browser-background-old: {{ colors.surface_container.default.hex }} !important;
 }
 
 /* Set background directly on documentElement to override JS */
 html:root,
 :root,
 html {
-  background-color: #{{ surfaceContainer.hex }} !important;
+  background-color: {{ colors.surface_container.default.hex }} !important;
 }
 
-#main-window[caelestia-theme-active="true"] {
-  --zen-primary-color: #{{ primary.hex }} !important;
-  --zen-colors-primary: #{{ primary.hex }} !important;
-  --zen-colors-primary-foreground: #{{ onPrimary.hex }} !important;
-  --zen-colors-border: #{{ outline.hex }} !important;
+#main-window[matugen-theme-active="true"] {
+  --zen-primary-color: {{ colors.primary.default.hex }} !important;
+  --zen-colors-primary: {{ colors.primary.default.hex }} !important;
+  --zen-colors-primary-foreground: {{ colors.on_primary.default.hex }} !important;
+  --zen-colors-border: {{ colors.outline.default.hex }} !important;
 
-  --zen-branding-dark: #{{ surface.hex }} !important;
-  --zen-branding-paper: #{{ surfaceContainerHigh.hex }} !important;
-  --zen-branding-bg: #{{ surface.hex }} !important;
-  --zen-branding-bg-reverse: #{{ onSurface.hex }} !important;
+  --zen-branding-dark: {{ colors.surface.default.hex }} !important;
+  --zen-branding-paper: {{ colors.surface_container_high.default.hex }} !important;
+  --zen-branding-bg: {{ colors.surface.default.hex }} !important;
+  --zen-branding-bg-reverse: {{ colors.on_surface.default.hex }} !important;
 
-  --zen-main-browser-background: #{{ surfaceContainer.hex }} !important;
-  --zen-main-browser-background-old: #{{ surfaceContainer.hex }} !important;
-  --zen-main-browser-background-toolbar: #{{ surfaceContainer.hex }} !important;
-  --zen-main-browser-background-toolbar-old: #{{ surfaceContainerHigh.hex }} !important;
-  --zen-themed-toolbar-bg: #{{ surfaceContainerHigh.hex }} !important;
-  --zen-themed-toolbar-bg-transparent: #{{ surfaceContainer.hex }} !important;
+  --zen-main-browser-background: {{ colors.surface_container.default.hex }} !important;
+  --zen-main-browser-background-old: {{ colors.surface_container.default.hex }} !important;
+  --zen-main-browser-background-toolbar: {{ colors.surface_container.default.hex }} !important;
+  --zen-main-browser-background-toolbar-old: {{ colors.surface_container_high.default.hex }} !important;
+  --zen-themed-toolbar-bg: {{ colors.surface_container_high.default.hex }} !important;
+  --zen-themed-toolbar-bg-transparent: {{ colors.surface_container.default.hex }} !important;
 
-  --toolbar-bgcolor: #{{ surfaceContainer.hex }} !important;
-  --toolbar-color: #{{ onSurface.hex }} !important;
-  --toolbox-textcolor: #{{ onSurface.hex }} !important;
-  --toolbox-textcolor-inactive: #{{ onSurfaceVariant.hex }} !important;
+  --toolbar-bgcolor: {{ colors.surface_container.default.hex }} !important;
+  --toolbar-color: {{ colors.on_surface.default.hex }} !important;
+  --toolbox-textcolor: {{ colors.on_surface.default.hex }} !important;
+  --toolbox-textcolor-inactive: {{ colors.on_surface_variant.default.hex }} !important;
 
-  --zen-colors-secondary: #{{ secondary.hex }} !important;
-  --zen-colors-tertiary: #{{ tertiary.hex }} !important;
-  --zen-colors-hover-bg: #{{ surfaceContainerHigh.hex }} !important;
-  --zen-colors-primary-foreground: #{{ onPrimary.hex }} !important;
-  --zen-colors-border: #{{ outline.hex }} !important;
-  --zen-colors-border-contrast: #{{ outlineVariant.hex }} !important;
-  --zen-colors-input-bg: #{{ surfaceContainerHigh.hex }} !important;
+  --zen-colors-secondary: {{ colors.secondary.default.hex }} !important;
+  --zen-colors-tertiary: {{ colors.tertiary.default.hex }} !important;
+  --zen-colors-hover-bg: {{ colors.surface_container_high.default.hex }} !important;
+  --zen-colors-primary-foreground: {{ colors.on_primary.default.hex }} !important;
+  --zen-colors-border: {{ colors.outline.default.hex }} !important;
+  --zen-colors-border-contrast: {{ colors.outline_variant.default.hex }} !important;
+  --zen-colors-input-bg: {{ colors.surface_container_high.default.hex }} !important;
 
-  --zen-dialog-background: #{{ surfaceContainer.hex }} !important;
-  --zen-urlbar-background: #{{ surfaceContainerHigh.hex }} !important;
+  --zen-dialog-background: {{ colors.surface_container.default.hex }} !important;
+  --zen-urlbar-background: {{ colors.surface_container_high.default.hex }} !important;
 
-  --in-content-primary-button-background: #{{ primary.hex }} !important;
-  --in-content-primary-button-text-color: #{{ onPrimary.hex }} !important;
-  --in-content-button-background: #{{ surfaceContainerHigh.hex }} !important;
-  --in-content-button-text-color: #{{ onSurface.hex }} !important;
-  --in-content-accent-color: #{{ primary.hex }} !important;
+  --in-content-primary-button-background: {{ colors.primary.default.hex }} !important;
+  --in-content-primary-button-text-color: {{ colors.on_primary.default.hex }} !important;
+  --in-content-button-background: {{ colors.surface_container_high.default.hex }} !important;
+  --in-content-button-text-color: {{ colors.on_surface.default.hex }} !important;
+  --in-content-accent-color: {{ colors.primary.default.hex }} !important;
 
-  --link-color: #{{ onSurface.hex }} !important;
-  --in-content-page-background: #{{ surface.hex }} !important;
-  --zen-in-content-dialog-background: #{{ surfaceContainer.hex }} !important;
+  --link-color: {{ colors.on_surface.default.hex }} !important;
+  --in-content-page-background: {{ colors.surface.default.hex }} !important;
+  --zen-in-content-dialog-background: {{ colors.surface_container.default.hex }} !important;
 
-  --input-bgcolor: #{{ surfaceContainerHigh.hex }} !important;
-  --toolbar-field-focus-background-color: #{{ surfaceContainerHighest.hex }} !important;
-  --toolbar-field-background-color: #{{ surfaceContainerHigh.hex }} !important;
-  --urlbar-box-hover-bgcolor: #{{ surfaceContainerHighest.hex }} !important;
-  --urlbar-box-active-bgcolor: #{{ surfaceContainerHighest.hex }} !important;
-  --urlbar-box-bgcolor: #{{ surfaceContainerHigh.hex }} !important;
+  --input-bgcolor: {{ colors.surface_container_high.default.hex }} !important;
+  --toolbar-field-focus-background-color: {{ colors.surface_container_highest.default.hex }} !important;
+  --toolbar-field-background-color: {{ colors.surface_container_high.default.hex }} !important;
+  --urlbar-box-hover-bgcolor: {{ colors.surface_container_highest.default.hex }} !important;
+  --urlbar-box-active-bgcolor: {{ colors.surface_container_highest.default.hex }} !important;
+  --urlbar-box-bgcolor: {{ colors.surface_container_high.default.hex }} !important;
 
-  --tab-background-color: #{{ surfaceContainer.hex }} !important;
-  --tab-hover-background-color: #{{ surfaceContainerHigh.hex }} !important;
+  --tab-background-color: {{ colors.surface_container.default.hex }} !important;
+  --tab-hover-background-color: {{ colors.surface_container_high.default.hex }} !important;
 
-  --arrowpanel-background: #{{ surfaceContainer.hex }} !important;
-  --arrowpanel-border-color: #{{ outline.hex }} !important;
-  --arrowpanel-color: #{{ onSurface.hex }} !important;
+  --arrowpanel-background: {{ colors.surface_container.default.hex }} !important;
+  --arrowpanel-border-color: {{ colors.outline.default.hex }} !important;
+  --arrowpanel-color: {{ colors.on_surface.default.hex }} !important;
 
-  --toolbarbutton-hover-background: #{{ surfaceContainerHigh.hex }} !important;
-  --toolbarbutton-active-background: #{{ surfaceContainerHighest.hex }} !important;
-  --toolbarbutton-icon-fill: #{{ onSurface.hex }} !important;
-  --toolbarbutton-icon-fill-attention: #{{ primary.hex }} !important;
+  --toolbarbutton-hover-background: {{ colors.surface_container_high.default.hex }} !important;
+  --toolbarbutton-active-background: {{ colors.surface_container_highest.default.hex }} !important;
+  --toolbarbutton-icon-fill: {{ colors.on_surface.default.hex }} !important;
+  --toolbarbutton-icon-fill-attention: {{ colors.primary.default.hex }} !important;
 
-  --urlbar-box-active-bgcolor: #{{ surfaceContainerHighest.hex }} !important;
-  --zen-toolbar-element-bg: #{{ surfaceContainerHigh.hex }} !important;
-  --zen-toolbar-element-bg-hover: #{{ surfaceContainerHighest.hex }} !important;
+  --urlbar-box-active-bgcolor: {{ colors.surface_container_highest.default.hex }} !important;
+  --zen-toolbar-element-bg: {{ colors.surface_container_high.default.hex }} !important;
+  --zen-toolbar-element-bg-hover: {{ colors.surface_container_highest.default.hex }} !important;
 
-  --zen-appcontent-border: 1px solid #{{ outline.hex }} !important;
-  --input-border-color: #{{ outlineVariant.hex }} !important;
-  --zen-input-border-color: #{{ outlineVariant.hex }} !important;
+  --zen-appcontent-border: 1px solid {{ colors.outline.default.hex }} !important;
+  --input-border-color: {{ colors.outline_variant.default.hex }} !important;
+  --zen-input-border-color: {{ colors.outline_variant.default.hex }} !important;
 }
 
 #sidebar-box {
-  --sidebar-background-color: #{{ surfaceDim.hex }} !important;
-  --sidebar-text-color: #{{ onSurface.hex }} !important;
-  --lwt-sidebar-text-color: #{{ onSurface.hex }} !important;
-  --lwt-sidebar-background-color: #{{ surfaceDim.hex }} !important;
+  --sidebar-background-color: {{ colors.surface_dim.default.hex }} !important;
+  --sidebar-text-color: {{ colors.on_surface.default.hex }} !important;
+  --lwt-sidebar-text-color: {{ colors.on_surface.default.hex }} !important;
+  --lwt-sidebar-background-color: {{ colors.surface_dim.default.hex }} !important;
 }
 
 #TabsToolbar,
 #navigator-toolbox {
-  background: #{{ surfaceContainer.hex }} !important;
+  background: {{ colors.surface_container.default.hex }} !important;
 }
 
 #urlbar {
-  --toolbar-color: #{{ onSurface.hex }} !important;
-  --toolbar-field-color: #{{ onSurfaceVariant.hex }} !important;
+  --toolbar-color: {{ colors.on_surface.default.hex }} !important;
+  --toolbar-field-color: {{ colors.on_surface_variant.default.hex }} !important;
 }
 
 #urlbar-background {
-  background: #{{ surfaceContainerHigh.hex }} !important;
+  background: {{ colors.surface_container_high.default.hex }} !important;
 }
 
 #main-window .toolbarbutton-icon {
-  fill: #{{ onSurface.hex }} !important;
+  fill: {{ colors.on_surface.default.hex }} !important;
 }
 
 ::selection {
-  background: #{{ primary.hex }} !important;
-  color: #{{ onPrimary.hex }} !important;
+  background: {{ colors.primary.default.hex }} !important;
+  color: {{ colors.on_primary.default.hex }} !important;
 }
 
 #appMenu-popup,
 .menupopup-arrowscrollbox,
 .panel-arrowcontent {
-  background-color: #{{ surfaceContainer.hex }} !important;
+  background-color: {{ colors.surface_container.default.hex }} !important;
 }
 
 /* New tab background - use surface color instead of transparent */
 .browserStack browser {
-  background-color: #{{ surface.hex }} !important;
+  background-color: {{ colors.surface.default.hex }} !important;
 }

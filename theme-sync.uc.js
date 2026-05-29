@@ -2,25 +2,25 @@
 /// <reference lib="esnext"/>
 /// <reference lib="dom"/>
 
-// CaelestiaZen Boost Sync
+// MatugenZen Boost Sync
 // Syncs surface color to Zen Boosts
 
 (function() {
   "use strict";
 
-  console.log("[CaelestiaZen] Initializing...");
+  console.log("[MatugenZen] Initializing...");
 
-  if (window.__caelestiaZenInitialized) {
+  if (window.__matugenZenInitialized) {
     return;
   }
-  window.__caelestiaZenInitialized = true;
+  window.__matugenZenInitialized = true;
 
-  const PREF_CHROME_PATH = "caelestia.zen-sync.chrome-path";
-  const PREF_SATURATION = "caelestia.zen-sync.saturation";
-  const PREF_BRIGHTNESS = "caelestia.zen-sync.brightness";
-  const PREF_CONTRAST = "caelestia.zen-sync.contrast";
+  const PREF_CHROME_PATH = "matugen.zen-sync.chrome-path";
+  const PREF_SATURATION = "matugen.zen-sync.saturation";
+  const PREF_BRIGHTNESS = "matugen.zen-sync.brightness";
+  const PREF_CONTRAST = "matugen.zen-sync.contrast";
   const BOOST_PREFS = [PREF_SATURATION, PREF_BRIGHTNESS, PREF_CONTRAST];
-  const DEFAULT_CHROME_PATH = "/home/dim/.local/state/caelestia/theme/zen-browser.css";
+  const DEFAULT_CHROME_PATH = "/home/dim/.cache/matugen/zen-browser.css";
 
   let chromeStyleEl = null;
   let lastChromeMtime = 0;
@@ -59,7 +59,7 @@
         return defaultValue;
       }
     } catch (e) {
-      console.error("[CaelestiaZen] Error reading num pref", prefName, e);
+      console.error("[MatugenZen] Error reading num pref", prefName, e);
     }
     return defaultValue;
   }
@@ -74,7 +74,7 @@
       brightness: brightnessRaw / 100,
       contrast: contrastRaw / 100,
     };
-    console.log("[CaelestiaZen] Raw values:", { saturationRaw, brightnessRaw, contrastRaw }, "-> Settings:", settings);
+    console.log("[MatugenZen] Raw values:", { saturationRaw, brightnessRaw, contrastRaw }, "-> Settings:", settings);
     return settings;
   }
 
@@ -85,11 +85,9 @@
     return path;
   }
 
-  // Apply colors directly to Zen's background element with inline styles
   function applyToZenBackground() {
     if (!currentColors.surfaceContainer) return;
 
-    // Target the specific element that Zen uses
     const zenBg = document.getElementById("zen-browser-background") ||
                   document.querySelector(".zen-browser-generic-background") ||
                   document.querySelector(".zen-gradient-canvas");
@@ -98,7 +96,7 @@
       zenBg.style.setProperty("--zen-main-browser-background", currentColors.surfaceContainer);
       zenBg.style.setProperty("--zen-main-browser-background-old", currentColors.surfaceContainer);
       zenBg.style.backgroundColor = currentColors.surfaceContainer;
-      console.log("[CaelestiaZen] Applied to #zen-browser-background:", currentColors.surfaceContainer);
+      console.log("[MatugenZen] Applied to #zen-browser-background:", currentColors.surfaceContainer);
     }
 
     const browser = document.getElementById("browser");
@@ -116,18 +114,17 @@
     docEl.style.setProperty("--zen-main-browser-background", currentColors.surfaceContainer);
     docEl.style.setProperty("--zen-main-browser-background-old", currentColors.surfaceContainer);
     docEl.style.backgroundColor = currentColors.surfaceContainer;
-    docEl.setAttribute("caelestia-theme-active", "true");
+    docEl.setAttribute("matugen-theme-active", "true");
   }
 
-  // Extract colors from CSS content
   function extractColors(cssContent) {
     const colors = {};
 
     const patterns = [
-      { key: "surface", regex: /--caelestia-surface:\s*(#[a-fA-F0-9]+)/ },
-      { key: "surfaceContainer", regex: /--caelestia-surfaceContainer:\s*(#[a-fA-F0-9]+)/ },
-      { key: "surfaceContainerHigh", regex: /--caelestia-surfaceContainerHigh:\s*(#[a-fA-F0-9]+)/ },
-      { key: "surfaceDim", regex: /--caelestia-surfaceDim:\s*(#[a-fA-F0-9]+)/ },
+      { key: "surface", regex: /--matugen-surface:\s*(#[a-fA-F0-9]+)/ },
+      { key: "surfaceContainer", regex: /--matugen-surfaceContainer:\s*(#[a-fA-F0-9]+)/ },
+      { key: "surfaceContainerHigh", regex: /--matugen-surfaceContainerHigh:\s*(#[a-fA-F0-9]+)/ },
+      { key: "surfaceDim", regex: /--matugen-surfaceDim:\s*(#[a-fA-F0-9]+)/ },
     ];
 
     for (const { key, regex } of patterns) {
@@ -169,7 +166,7 @@
     ];
   }
 
-function applyCaelestiaBoost(surfaceHex) {
+  function applyMatugenBoost(surfaceHex) {
     if (!surfaceHex || surfaceHex.length !== 7) return;
 
     const [r, g, b] = hexToRgb(surfaceHex);
@@ -224,7 +221,7 @@ function applyCaelestiaBoost(surfaceHex) {
       bc.zenBoostsComplementaryRotation = boostData.secondaryDotAngleDegDelta ?? 0;
       bc.isZenBoostsInverted = boostData.smartInvert;
     }
-    console.log("[CaelestiaZen] Boost applied to all tabs:", boostData.dotAngleDeg, boostData.saturation);
+    console.log("[MatugenZen] Boost applied to all tabs:", boostData.dotAngleDeg, boostData.saturation);
   }
 
   function buildBoostColor(hueDeg, sat, light, boostData) {
@@ -267,12 +264,12 @@ function applyCaelestiaBoost(surfaceHex) {
       const content = await IOUtils.readUTF8(path);
 
       currentColors = extractColors(content);
-      console.log("[CaelestiaZen] Colors:", currentColors);
+      console.log("[MatugenZen] Colors:", currentColors);
 
       if (chromeStyleEl) chromeStyleEl.remove();
 
       chromeStyleEl = document.createElement("style");
-      chromeStyleEl.id = "caelestia-chrome-theme";
+      chromeStyleEl.id = "matugen-chrome-theme";
       chromeStyleEl.setAttribute("type", "text/css");
       chromeStyleEl.textContent = content;
       document.head.appendChild(chromeStyleEl);
@@ -280,12 +277,12 @@ function applyCaelestiaBoost(surfaceHex) {
       applyToZenBackground();
 
       if (currentColors.surface) {
-        applyCaelestiaBoost(currentColors.surface);
+        applyMatugenBoost(currentColors.surface);
       }
 
-      console.log("[CaelestiaZen] Theme applied!");
+      console.log("[MatugenZen] Theme applied!");
     } catch (e) {
-      console.error("[CaelestiaZen] Error:", e);
+      console.error("[MatugenZen] Error:", e);
     }
   }
 
@@ -379,13 +376,13 @@ function applyCaelestiaBoost(surfaceHex) {
       start();
     }
 
-    console.log("[CaelestiaZen] Init complete!");
+    console.log("[MatugenZen] Init complete!");
   }
 
   function onBoostSettingsChange() {
     if (!currentColors.surface) return;
-    applyCaelestiaBoost(currentColors.surface);
-    console.log("[CaelestiaZen] Boost settings updated");
+    applyMatugenBoost(currentColors.surface);
+    console.log("[MatugenZen] Boost settings updated");
   }
 
   init();

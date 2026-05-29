@@ -1,19 +1,19 @@
 {
-  "id": "caelestia-zen",
-  "name": "CaelestiaZen",
-  "description": "Syncs Caelestia's surface color to Zen Browser boosts.",
-  "homepage": "https://github.com/dim-ghub/CaelestiaZen",
+  "id": "matugen-zen",
+  "name": "MatugenZen",
+  "description": "Syncs Matugen's surface color to Zen Browser boosts.",
+  "homepage": "https://github.com/haikalllp/MatugenZen",
   "author": "DiM",
   "version": "1.0.0",
   "tags": [
     "Theme",
     "Boost",
     "Sync",
-    "Caelestia"
+    "Matugen"
   ],
   "scripts": {
     "theme-sync.uc.js": {
-      "name": "CaelestiaZen",
+      "name": "MatugenZen",
       "description": "Syncs surface color to Zen Boosts.",
       "include": [
         "chrome://browser/content/browser.xhtml"
