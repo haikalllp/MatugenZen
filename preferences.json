@@ -18,24 +18,24 @@
     "type": "string",
     "value": "num",
     "property": "matugen.zen-sync.saturation",
-    "defaultValue": "150",
+    "defaultValue": "155",
     "label": "Color Intensity",
-    "description": "0-200 (default: 200 = 2.00)"
+    "description": "0-200 (default: 155 = 1.55)"
   },
   {
     "type": "string",
     "value": "num",
     "property": "matugen.zen-sync.brightness",
-    "defaultValue": "15",
+    "defaultValue": "60",
     "label": "Color Brightness",
-    "description": "0-100 (default: 5 = 0.05)"
+    "description": "0-100 (default: 60 = 0.60)"
   },
   {
     "type": "string",
     "value": "num",
     "property": "matugen.zen-sync.contrast",
-    "defaultValue": "30",
-    "label": "Color Strength",
-    "description": "0-100 (default: 50 = 0.50, lower = stronger)"
+    "defaultValue": "80",
+    "label": "Color Contrast",
+    "description": "0-100 (default: 80 = 0.80, lower = stronger)"
   }
 ]
