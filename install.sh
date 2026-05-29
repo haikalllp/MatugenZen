@@ -14,9 +14,33 @@ for arg in "$@"; do
     fi
 done
 
+detect_platform() {
+    local os
+    local arch
+
+    case "$(uname -s)" in
+        Linux*)  os="linux" ;;
+        Darwin*) os="osx" ;;
+        MINGW*|MSYS*|CYGWIN*) os="win" ;;
+        *)       echo "Unsupported OS: $(uname -s)" >&2; exit 1 ;;
+    esac
+
+    case "$(uname -m)" in
+        x86_64|amd64) arch="x64" ;;
+        aarch64|arm64) arch="arm64" ;;
+        *)              echo "Unsupported architecture: $(uname -m)" >&2; exit 1 ;;
+    esac
+
+    if [[ "$os" == "win" ]]; then
+        echo "${os}-${arch}.exe"
+    else
+        echo "${os}-${arch}"
+    fi
+}
+
 find_zen_profile() {
     for dir in ~/.config/zen/*/; do
-        if [[ -d "$dir/chrome/sine-mods" ]]; then
+        if [[ -d "$dir/chrome/sine-mods" ]] && [[ ! "$(basename "$dir")" =~ [Pp]rofile[\s-]+[Gg]roups ]]; then
             echo "$dir"
             return 0
         fi
@@ -24,11 +48,85 @@ find_zen_profile() {
     return 1
 }
 
-PROFILE_DIR=$(find_zen_profile)
+find_any_zen_profile() {
+    for dir in ~/.config/zen/*/; do
+        if [[ ! "$(basename "$dir")" =~ [Pp]rofile[\s-]+[Gg]roups ]]; then
+            echo "$dir"
+            return 0
+        fi
+    done
+    return 1
+}
+
+install_sine() {
+    local platform
+    platform=$(detect_platform)
+    local sine_binary="sine-${platform}"
+    local temp_dir
+    temp_dir=$(mktemp -d)
+
+    echo "Installing Sine..."
+    echo "Platform: $platform"
+    echo "Downloading latest Sine..."
+
+    if ! command -v curl &> /dev/null; then
+        echo "Error: curl is required to download Sine"
+        echo "Please install curl or download Sine manually from:"
+        echo "https://github.com/CosmoCreeper/Sine/releases"
+        exit 1
+    fi
+
+    if ! curl -fsSL "https://github.com/CosmoCreeper/Sine/releases/latest/download/${sine_binary}" -o "${temp_dir}/${sine_binary}"; then
+        echo "Error: Failed to download Sine"
+        exit 1
+    fi
+
+    chmod +x "${temp_dir}/${sine_binary}"
+
+    echo "Running Sine installer..."
+    if [[ -t 1 ]]; then
+        "${temp_dir}/${sine_binary}"
+    else
+        "${temp_dir}/${sine_binary}" < /dev/tty
+    fi
+
+    rm -rf "$temp_dir"
+
+    echo ""
+    echo "Sine installed successfully!"
+    echo "Please restart Zen Browser to initialize Sine, then re-run this script."
+    exit 0
+}
+
+PROFILE_DIR=$(find_zen_profile) || true
 
 if [[ -z "$PROFILE_DIR" ]]; then
-    echo "Error: Could not find a Zen profile with sine-mods directory"
-    exit 1
+    if find_any_zen_profile &> /dev/null; then
+        echo "Zen Browser profiles found, but Sine is not installed."
+        echo ""
+        read -p "Do you want to install Sine automatically? [Y/n] " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+            install_sine
+
+            PROFILE_DIR=$(find_zen_profile) || true
+
+            if [[ -z "$PROFILE_DIR" ]]; then
+                echo "Error: Could not find Zen profile after Sine installation"
+                echo "Please restart Zen Browser at least once to initialize Sine"
+                exit 1
+            fi
+        else
+            echo "Installation cancelled."
+            echo "Please install Sine manually from:"
+            echo "https://github.com/CosmoCreeper/Sine/releases"
+            exit 0
+        fi
+    else
+        echo "Error: No Zen Browser profiles found at ~/.config/zen/"
+        echo "Please install Zen Browser first."
+        exit 1
+    fi
 fi
 
 MOD_DIR="$PROFILE_DIR/chrome/sine-mods/matugen-zen"
