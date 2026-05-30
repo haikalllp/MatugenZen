@@ -28,7 +28,15 @@ This will automatically:
 - Update `mods.json`
 - Install the matugen template to `~/.config/matugen/templates/`
 
-Then restart Zen Browser.
+### Template Setup
+
+The install script will automatically copy the template to your matugen templates, but you have to set them in `config.toml` manually:
+
+```bash
+[templates.zen]
+input_path = '~/.config/matugen/templates/zen-browser.css'
+output_path = '~/.cache/matugen/zen-browser.css'
+```
 
 ## Manual Installation
 
@@ -62,24 +70,13 @@ with open('mods.json', 'w') as f:
 
 Edit preferences in Sine settings:
 - **Theme File Path**: Path to the zen-browser.css theme file (default: `~/.cache/matugen/zen-browser.css`)
-- **Color Intensity**: 0-200 (default: 150)
-- **Color Brightness**: 0-100 (default: 15)
-- **Color Strength**: 0-100, lower = stronger (default: 30)
+- **Color Intensity**: 0-200 (default: 155)
+- **Color Brightness**: 0-100 (default: 60)
+- **Color Contrast**: 0-100, lower = stronger (default: 80)
 
 ## Theme File
 
 The mod watches for changes in the chrome theme file and automatically applies the surface color to Zen Boosts for all websites.
-
-## Template Setup
-
-The install script will automatically copy the template to your matugen config. To do it manually:
-
-```bash
-mkdir -p ~/.config/matugen/templates
-cp templates/zen-browser.css ~/.config/matugen/templates/
-```
-
-The template uses matugen's dot-notation syntax (`{{ colors.surface.default.hex }}`) that Matugen replaces with actual Material You colors.
 
 ## Requirements
 
