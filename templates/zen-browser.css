@@ -69,7 +69,7 @@ html {
   --in-content-accent-color: {{ colors.primary.default.hex }} !important;
 
   --link-color: {{ colors.on_surface.default.hex }} !important;
-  --in-content-page-background: {{ colors.surface.default.hex }} !important;
+  --in-content-page-background: {{ colors.surface_container.default.hex }} !important;
   --zen-in-content-dialog-background: {{ colors.surface_container.default.hex }} !important;
 
   --input-bgcolor: {{ colors.surface_container_high.default.hex }} !important;
@@ -138,5 +138,5 @@ html {
 
 /* New tab background - use surface color instead of transparent */
 .browserStack browser {
-  background-color: {{ colors.surface.default.hex }} !important;
+  background-color: {{ colors.surface_container.default.hex }} !important;
 }
