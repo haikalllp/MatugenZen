@@ -388,10 +388,7 @@ install_mod() {
         ln -sf "$SCRIPT_DIR/preferences.json" "$MOD_DIR/"
         ln -sf "$SCRIPT_DIR/chrome.css" "$MOD_DIR/"
         ln -sf "$SCRIPT_DIR/assets/zen-logo.svg" "$MOD_DIR/assets/"
-        local tmpl="$HOME/.config/matugen/templates/zen-browser.css"
-        if [[ ! -f "$tmpl" ]]; then
-            ln -sf "$SCRIPT_DIR/templates/zen-browser.css" "$tmpl"
-        fi
+        ln -sf "$SCRIPT_DIR/templates/zen-browser.css" "$HOME/.config/matugen/templates/"
         ok "Installed in DEV mode (symlinks)"
     else
         cp "$SCRIPT_DIR/theme.json" "$MOD_DIR/"
@@ -399,13 +396,7 @@ install_mod() {
         cp "$SCRIPT_DIR/preferences.json" "$MOD_DIR/"
         cp "$SCRIPT_DIR/chrome.css" "$MOD_DIR/"
         cp "$SCRIPT_DIR/assets/zen-logo.svg" "$MOD_DIR/assets/"
-        local tmpl="$HOME/.config/matugen/templates/zen-browser.css"
-        if [[ ! -f "$tmpl" ]]; then
-            cp "$SCRIPT_DIR/templates/zen-browser.css" "$tmpl"
-            ok "Installed template to $tmpl"
-        else
-            ok "Template already exists at $tmpl (skipped)"
-        fi
+        cp "$SCRIPT_DIR/templates/zen-browser.css" "$HOME/.config/matugen/templates/"
         ok "Installed (copied)"
     fi
 
@@ -450,16 +441,18 @@ PYEOF
 # Main
 # ==========================================
 
-echo ""
-echo "  MatugenZen Installer"
-echo "  ===================="
-echo ""
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  echo ""
+  echo "  MatugenZen Installer"
+  echo "  ===================="
+  echo ""
 
-choose_browser_profile
+  choose_browser_profile
 
-install_sine "$CHOSEN_INSTALL_DIR" "$CHOSEN_PROFILE_DIR"
-echo ""
-install_mod "$CHOSEN_PROFILE_DIR"
-echo ""
-info "All done! Restart your browser, go to about:support,"
-info "click 'Clear Startup Cache', then restart again."
+  install_sine "$CHOSEN_INSTALL_DIR" "$CHOSEN_PROFILE_DIR"
+  echo ""
+  install_mod "$CHOSEN_PROFILE_DIR"
+  echo ""
+  info "All done! Restart your browser, go to about:support,"
+  info "click 'Clear Startup Cache', then restart again."
+fi
