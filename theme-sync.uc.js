@@ -136,6 +136,9 @@
       colors.surfaceContainer = colors.surface;
     }
 
+    const schemeMatch = cssContent.match(/color-scheme:\s*(dark|light)/);
+    if (schemeMatch) colors.scheme = schemeMatch[1];
+
     return colors;
   }
 
@@ -166,6 +169,11 @@
     ];
   }
 
+  function isLightSurface(hex) {
+    const [r, g, b] = hexToRgb(hex);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.5;
+  }
+
   function applyMatugenBoost(surfaceHex) {
     if (!surfaceHex || surfaceHex.length !== 7) return;
 
@@ -174,11 +182,14 @@
 
     const settings = loadBoostSettings();
 
+    const isLight = currentColors.scheme === "light" || isLightSurface(surfaceHex);
+    const sat = isLight ? Math.min(s, 0.12) : Math.min(s * settings.saturationMultiplier, 1);
+
     const boostData = {
       dotAngleDeg: Math.round(h * 360),
-      dotDistance: Math.min(s * settings.saturationMultiplier, 1),
-      saturation: Math.min(s * settings.saturationMultiplier, 1),
-      brightness: settings.brightness,
+      dotDistance: sat,
+      saturation: sat,
+      brightness: isLight ? 0.85 : settings.brightness,
       contrast: settings.contrast,
       smartInvert: false,
       secondaryDotAngleDegDelta: 55,
