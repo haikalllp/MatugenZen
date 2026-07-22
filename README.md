@@ -1,6 +1,6 @@
 # MatugenZen
 
-A Sine mod for Zen Browser that syncs Matugen's surface color to Zen Boosts, automatically theming all websites.
+A Sine mod for mainly for Zen Browser and other firefox based browser that syncs Matugen's surface color to Zen Boosts, automatically theming all websites.
 
 ## Features
 
@@ -14,17 +14,32 @@ A Sine mod for Zen Browser that syncs Matugen's surface color to Zen Boosts, aut
 
 Run the install script:
 ```bash
-bash install.sh
+# Run the install script
+./install.sh
 ```
+```
+# Choose browser and profile
+# Example
+:: Detecting installed browsers...
+Available browsers:
+  1) Zen Browser (/opt/zen-browser-bin)  (default)
+  2) Firefox (/usr/lib/firefox)
+  0) Manual entry
 
-For development with symlinks:
-```bash
-bash install.sh --dev
+Select browser [1]: 1
+
+:: Finding profiles in /home/user/.config/zen...
+Available profiles:
+  1) Default Profile  (default)
+  2) Default (release)
+
+Select profile [1]: 2
 ```
 
 This will automatically:
+- Install sine mods and set it up
 - Detect your Zen profile
-- Copy or symlink the mod files
+- Copy the mod files
 - Update `mods.json`
 - Install the matugen template to `~/.config/matugen/templates/`
 
@@ -36,34 +51,6 @@ The install script will automatically copy the template to your matugen template
 [templates.zen]
 input_path = '~/.config/matugen/templates/zen-browser.css'
 output_path = '~/.cache/matugen/zen-browser.css'
-```
-
-## Manual Installation
-
-1. Create the mod directory:
-```bash
-mkdir -p ~/.config/zen/<profile>/chrome/sine-mods/matugen-zen
-```
-
-2. Copy the mod files:
-```bash
-cp *.json *.uc.js *.css ~/.config/zen/<profile>/chrome/sine-mods/matugen-zen/
-```
-
-3. Add to `mods.json` in `~/.config/zen/<profile>/chrome/sine-mods/`:
-```bash
-cd ~/.config/zen/<profile>/chrome/sine-mods
-python3 -c "
-import json
-with open('mods.json', 'r') as f:
-    mods = json.load(f)
-with open('matugen-zen/theme.json', 'r') as f:
-    new_mod = json.load(f)
-mods['matugen-zen'] = new_mod
-mods['matugen-zen']['origin'] = 'store'
-with open('mods.json', 'w') as f:
-    json.dump(mods, f, indent=2)
-"
 ```
 
 ## Configuration
